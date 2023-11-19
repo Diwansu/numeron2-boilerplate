@@ -66,6 +66,7 @@ random()
     function add() {
         if(number1+number2 == numb3) {
             score++ 
+            reset (timerId) 
             random()
         } else {
             location.href = "gameover.html?score=" +score ;
@@ -78,6 +79,7 @@ random()
     Subtraction.onclick =  ()=> {
         if(number1-number2 == numb3) {
             score++ 
+            reset (timerId)
             random()
         } else {
             location.href = "gameover.html?score=" +score ;
@@ -89,6 +91,7 @@ random()
    Multiplication.onclick =  ()=> {
     if(number1*number2 == numb3) {
         score++ 
+        reset (timerId)
         random()
     } else {
         location.href = "gameover.html?score=" +score ;
@@ -99,6 +102,7 @@ random()
    Division.onclick =  ()=> {
     if(number1/number2 == numb3) {
         score++ 
+        reset (timerId)
         random()
     } else {
         location.href =  "gameover.html?score=" +score ;
@@ -110,13 +114,37 @@ random()
    Modulus.onclick =  ()=> {
     if(number1%number2 == numb3) {
         score++ 
+        reset (timerId)
         random()
     } else {
         location.href = "gameover.html?score=" +score ;
     }
 }
 
+var time=20 ;
+var timer=document.getElementById("timer") 
+var timerId ; 
 
+ function showTimer (){
+  time=20 
+  timer.innerText=time 
+  timerId =setInterval(()=>{
+    time-- ;
+
+  if(time==0){
+      localStorage.setItem("score",score);
+      location.href='./gameover.html';
+  }
+  timer.innerText=time ;
+  },1000)
+  }
+
+  function reset (timerId){
+      clearInterval(timerId) 
+      showTimer()
+  }
+
+  showTimer() 
 
 
 
@@ -132,3 +160,4 @@ random()
 // Iteration 6: Making the Operators (button) functional
 
 // Iteration 7: Making Timer functional
+
